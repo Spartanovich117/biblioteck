@@ -55,6 +55,11 @@ public class Client extends javax.swing.JFrame {
         betat.setBackground(new java.awt.Color(255, 255, 255));
         betat.setText("Etat de mes emprunts");
         betat.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        betat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                betatActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -101,6 +106,11 @@ public class Client extends javax.swing.JFrame {
         new Liste_Livres().setVisible(true);
         this.hide();
     }//GEN-LAST:event_blisteActionPerformed
+
+    private void betatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_betatActionPerformed
+        new Etat_Emprunt().setVisible(true);
+        this.hide();
+    }//GEN-LAST:event_betatActionPerformed
 
     /**
      * @param args the command line arguments

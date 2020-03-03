@@ -10,9 +10,9 @@ import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import tg.snovich.modeles_tables.ModeleLivres;
+import tg.snovich.modeles_tables.ModeleEtatEmprunt;
 
-public class Liste_Livres extends JFrame {
+public class Etat_Emprunt extends JFrame {
     
     public enum Sport {
         TENNIS,
@@ -21,13 +21,13 @@ public class Liste_Livres extends JFrame {
         RIEN;
     }
     
-    public Liste_Livres() {
+    public Etat_Emprunt() {
         super();
  
-        setTitle("Liste des livres");
+        setTitle("Etat de mes emprunts");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
  
-        JTable tableau = new JTable(new ModeleLivres());
+        JTable tableau = new JTable(new ModeleEtatEmprunt());
  
         getContentPane().add(new JScrollPane(tableau), BorderLayout.CENTER);
  

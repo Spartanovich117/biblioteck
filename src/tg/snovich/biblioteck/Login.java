@@ -138,9 +138,11 @@ public class Login extends javax.swing.JFrame {
         switch(role){
             case "client":
                 new Client().setVisible(true);
+                this.hide();
             break;
             case "employe":
                 new Employe().setVisible(true);
+                this.hide();
             break;
             default:
                 JOptionPane.showMessageDialog(rootPane, "Identifiants incorrects", "Erreur authentification", JOptionPane.ERROR_MESSAGE, null);

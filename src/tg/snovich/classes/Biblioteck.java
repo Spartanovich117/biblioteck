@@ -27,7 +27,7 @@ public class Biblioteck {
         ResultSet rs = null;
         try {
             statement = db.createStatement();
-            rs = statement.executeQuery("SELECT * FROM compte INNER JOIN utilisateur ON utilisateur.compte_id = compte.id");
+            rs = statement.executeQuery("SELECT * FROM compte INNER JOIN user ON user.compte_id = compte.id");
             while(rs.next()) {
                 if(rs.getString("mot_de_passe").equals(mdp) && rs.getString("telephone").equals(tel)) {
                     role = rs.getString("role");
@@ -35,7 +35,6 @@ public class Biblioteck {
                     break;
                 }
                 else {
-                    db.close();
                     role = "KO";
                 }
             }
@@ -65,5 +64,25 @@ public class Biblioteck {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
         return listeLivres;
+    }
+    
+    public static ArrayList listeLivresEmpruntes() {
+        ArrayList<LivreEmprunte> listeLivresEmpruntes = new ArrayList();
+        Connection db = Database.getConnection();   
+        Statement statement = null;
+        ResultSet rs = null;
+        try {
+            statement = db.createStatement();
+            rs = statement.executeQuery("SELECT isbn, date_emprunt, nom, prenom FROM contenu_emprunt INNER JOIN emprunt ON emprunt_id=emprunt.id INNER JOIN livre on livre_id=livre.id INNER JOIN user ON user.id=user_id;");
+            while(rs.next()) {
+                LivreEmprunte livre_temp = new LivreEmprunte();
+                livre_temp.setDate_emprunt(rs.getDate("date_emprunt"));
+                livre_temp.setIsbn(rs.getString("isbn"));
+                listeLivresEmpruntes.add(livre_temp);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listeLivresEmpruntes;
     }
 }
