@@ -5,6 +5,10 @@
  */
 package tg.snovich.biblioteck;
 
+import java.util.ArrayList;
+import tg.snovich.classes.Biblioteck;
+import tg.snovich.classes.Livre;
+
 /**
  *
  * @author fidi

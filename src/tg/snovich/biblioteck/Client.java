@@ -16,6 +16,7 @@ public class Client extends javax.swing.JFrame {
      */
     public Client() {
         initComponents();
+        setTitle("Client");
     }
 
     /**
@@ -45,6 +46,11 @@ public class Client extends javax.swing.JFrame {
         bliste.setBackground(new java.awt.Color(255, 255, 255));
         bliste.setText("Liste des livres");
         bliste.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        bliste.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                blisteActionPerformed(evt);
+            }
+        });
 
         betat.setBackground(new java.awt.Color(255, 255, 255));
         betat.setText("Etat de mes emprunts");
@@ -90,6 +96,11 @@ public class Client extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void blisteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blisteActionPerformed
+        new Liste_Livres().setVisible(true);
+        this.hide();
+    }//GEN-LAST:event_blisteActionPerformed
 
     /**
      * @param args the command line arguments

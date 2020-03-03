@@ -13,6 +13,8 @@ import java.sql.SQLException;
  * @author Spartanovich_117
  */
 public class Database {
+    
+    
     public static Connection getConnection() {
         Connection conn = null;
         try {
