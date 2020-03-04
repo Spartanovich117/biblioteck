@@ -22,7 +22,7 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println(Biblioteck.listeLivres().toArray());
+        Biblioteck.inscrireClient("BOKOBOSSO", "Josué", "99885825", "CLT-001", "admin", "client");
     }
     
 }

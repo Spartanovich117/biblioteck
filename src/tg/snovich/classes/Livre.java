@@ -14,6 +14,7 @@ import java.sql.Date;
 public class Livre {
     private int id;
     private String isbn;
+    private String titre;
     private Date date_ajout;
     private String etat;
 
@@ -50,6 +51,14 @@ public class Livre {
     }
 
     public Livre() {
+    }
+
+    public String getTitre() {
+        return titre;
+    }
+
+    public void setTitre(String titre) {
+        this.titre = titre;
     }
     
     

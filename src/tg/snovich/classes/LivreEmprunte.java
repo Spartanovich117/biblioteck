@@ -14,6 +14,15 @@ import java.sql.Date;
 public class LivreEmprunte {
     private String isbn;
     private Date date_emprunt;
+    private String titre;
+
+    public String getTitre() {
+        return titre;
+    }
+
+    public void setTitre(String titre) {
+        this.titre = titre;
+    }
 
     public String getIsbn() {
         return isbn;

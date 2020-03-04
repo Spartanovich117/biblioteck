@@ -55,6 +55,7 @@ public class Biblioteck {
             while(rs.next()) {
                 Livre livre_temp = new Livre();
                 livre_temp.setId(rs.getInt("id"));
+                livre_temp.setTitre(rs.getString("titre"));
                 livre_temp.setDate_ajout(rs.getDate("date_ajout"));
                 livre_temp.setEtat(rs.getString("etat"));
                 livre_temp.setIsbn(rs.getString("isbn"));
@@ -78,11 +79,29 @@ public class Biblioteck {
                 LivreEmprunte livre_temp = new LivreEmprunte();
                 livre_temp.setDate_emprunt(rs.getDate("date_emprunt"));
                 livre_temp.setIsbn(rs.getString("isbn"));
+                livre_temp.setTitre(rs.getString("titre"));
                 listeLivresEmpruntes.add(livre_temp);
             }
         } catch (SQLException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
         return listeLivresEmpruntes;
+    }
+    
+    public static void inscrireClient(String nom, String prenom, String telephone, String id, String mot_de_passe, String role) {
+        Connection db = Database.getConnection();   
+        Statement statement = null;
+        boolean result;
+        String[] user_params = {nom, prenom, telephone, id};
+        String[] compte_params = {id, mot_de_passe, role}; 
+        try {
+            statement = db.createStatement();
+            result = statement.execute("INSERT INTO compte(id, mot_de_passe, role) VALUES(?,?,?)", compte_params);
+            if(result)
+                statement.execute("INSERT INTO user(nom, prenom, telephone, compte_id) VALUES(?,?,?,?)", user_params);
+        } catch (SQLException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 }

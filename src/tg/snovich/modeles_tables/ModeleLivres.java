@@ -26,7 +26,7 @@ public class ModeleLivres extends AbstractTableModel {
     
     private final ArrayList<Livre> livres = Biblioteck.listeLivres();
  
-    private final String[] entetes = {"id", "ISBN", "Date d'ajout", "Etat livre"};
+    private final String[] entetes = {"ISBN", "Titre", "Date d'ajout", "Etat livre"};
  
     public ModeleLivres() {
         super();
@@ -47,9 +47,9 @@ public class ModeleLivres extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch(columnIndex){
             case 0:
-                return livres.get(rowIndex).getId();
-            case 1:
                 return livres.get(rowIndex).getIsbn();
+            case 1:
+                return livres.get(rowIndex).getTitre();
             case 2:
                 return livres.get(rowIndex).getDate_ajout();
             case 3:
