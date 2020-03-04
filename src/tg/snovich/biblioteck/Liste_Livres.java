@@ -6,20 +6,12 @@
 package tg.snovich.biblioteck;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import tg.snovich.modeles_tables.ModeleLivres;
 
 public class Liste_Livres extends JFrame {
-    
-    public enum Sport {
-        TENNIS,
-        FOOTBALL,
-        NATATION,
-        RIEN;
-    }
     
     public Liste_Livres() {
         super();
