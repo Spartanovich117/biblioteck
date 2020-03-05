@@ -131,6 +131,9 @@
         <Component class="javax.swing.JTextField" name="telephone">
         </Component>
         <Component class="javax.swing.JPasswordField" name="mdp">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mdpActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="rbmdpo">
           <Properties>

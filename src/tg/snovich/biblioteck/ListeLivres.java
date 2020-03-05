@@ -11,9 +11,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import tg.snovich.modeles_tables.ModeleLivres;
 
-public class Liste_Livres extends JFrame {
+public class ListeLivres extends JFrame {
     
-    public Liste_Livres() {
+    public ListeLivres() {
         super();
  
         setTitle("Liste des livres");
@@ -27,6 +27,6 @@ public class Liste_Livres extends JFrame {
     }
  
     public static void main(String[] args) {
-        new Liste_Livres().setVisible(true);
+        new ListeLivres().setVisible(true);
     }
 }

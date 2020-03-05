@@ -103,7 +103,7 @@ public class Client extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void blisteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blisteActionPerformed
-        new Liste_Livres().setVisible(true);
+        new ListeLivres().setVisible(true);
         this.hide();
     }//GEN-LAST:event_blisteActionPerformed
 

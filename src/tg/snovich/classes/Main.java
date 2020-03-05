@@ -21,8 +21,8 @@ public class Main {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        Biblioteck.inscrireClient("BOKOBOSSO", "Josué", "99885825", "CLT-001", "admin", "client");
+    public static void main(String[] args) throws SQLException {
+        Biblioteck.listeClients();
     }
     
 }

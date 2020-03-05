@@ -35,6 +35,6 @@ public class Etat_Emprunt extends JFrame {
     }
  
     public static void main(String[] args) {
-        new Liste_Livres().setVisible(true);
+        new ListeLivres().setVisible(true);
     }
 }

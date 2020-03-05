@@ -5,28 +5,28 @@
  */
 package tg.snovich.modeles_tables;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 import tg.snovich.classes.Biblioteck;
+import tg.snovich.classes.Client;
 import tg.snovich.classes.Livre;
 
 /**
  *
  * @author Spartanovich_117
  */
-public class ModeleLivres extends AbstractTableModel {
+public class ModeleClient extends AbstractTableModel {
     
-    private final ArrayList<Livre> livres = Biblioteck.listeLivres();
+    private final ArrayList<Client> clients = Biblioteck.listeClients();
  
-    private final String[] entetes = {"ISBN", "Titre", "Date d'ajout", "Etat livre"};
+    private final String[] entetes = {"Nom", "Prénom", "Téléphone"};
  
-    public ModeleLivres() {
+    public ModeleClient() {
         super();
     }
  
     public int getRowCount() {
-        return livres.size();
+        return clients.size();
     }
  
     public int getColumnCount() {
@@ -40,15 +40,14 @@ public class ModeleLivres extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch(columnIndex){
             case 0:
-                return livres.get(rowIndex).getIsbn();
+                return clients.get(rowIndex).getNom();
             case 1:
-                return livres.get(rowIndex).getTitre();
+                return clients.get(rowIndex).getPrenom();
             case 2:
-                return livres.get(rowIndex).getDate_ajout();
-            case 3:
-                return livres.get(rowIndex).getEtat();
+                return clients.get(rowIndex).getTelephone();
             default:
                 return null; //Ne devrait jamais arriver
         }
     }
+    
 }

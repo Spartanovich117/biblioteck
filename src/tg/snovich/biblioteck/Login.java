@@ -56,6 +56,12 @@ public class Login extends javax.swing.JFrame {
 
         jLabel2.setText("Mot de passe");
 
+        mdp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mdpActionPerformed(evt);
+            }
+        });
+
         rbmdpo.setText("mot de passe oublié");
         rbmdpo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,11 +150,18 @@ public class Login extends javax.swing.JFrame {
                 new Employe().setVisible(true);
                 this.hide();
             break;
-            default:
+            case "EMPTY":
+                JOptionPane.showMessageDialog(rootPane, "Base de données vide", "Erreur authentification", JOptionPane.INFORMATION_MESSAGE, null);
+            break;
+            case "KO":
                 JOptionPane.showMessageDialog(rootPane, "Identifiants incorrects", "Erreur authentification", JOptionPane.ERROR_MESSAGE, null);
             break;
         }
     }//GEN-LAST:event_bvaliderActionPerformed
+
+    private void mdpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mdpActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mdpActionPerformed
 
     /**
      * @param args the command line arguments

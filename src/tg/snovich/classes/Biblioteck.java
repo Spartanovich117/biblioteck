@@ -6,8 +6,10 @@
 package tg.snovich.classes;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -30,7 +32,7 @@ public class Biblioteck {
             rs = statement.executeQuery("SELECT * FROM compte INNER JOIN user ON user.compte_id = compte.id");
             while(rs.next()) {
                 if(rs.getString("mot_de_passe").equals(mdp) && rs.getString("telephone").equals(tel)) {
-                    role = rs.getString("role");
+                    role = rs.getString("roles");
                     db.close();
                     break;
                 }
@@ -88,20 +90,56 @@ public class Biblioteck {
         return listeLivresEmpruntes;
     }
     
-    public static void inscrireClient(String nom, String prenom, String telephone, String id, String mot_de_passe, String role) {
+    public static ArrayList listeClients() {
+        ArrayList<Client> listeClients = new ArrayList();
         Connection db = Database.getConnection();   
         Statement statement = null;
-        boolean result;
-        String[] user_params = {nom, prenom, telephone, id};
-        String[] compte_params = {id, mot_de_passe, role}; 
+        ResultSet rs = null;
         try {
             statement = db.createStatement();
-            result = statement.execute("INSERT INTO compte(id, mot_de_passe, role) VALUES(?,?,?)", compte_params);
-            if(result)
-                statement.execute("INSERT INTO user(nom, prenom, telephone, compte_id) VALUES(?,?,?,?)", user_params);
+            rs = statement.executeQuery("SELECT * FROM user");
+            while(rs.next()) {
+                Client client_temp = new Client();
+                client_temp.setNom(rs.getString("nom"));
+                client_temp.setPrenom(rs.getString("prenom"));
+                client_temp.setTelephone(rs.getString("telephone"));
+                client_temp.setId_client(rs.getString("id"));
+                listeClients.add(client_temp);
+                System.out.println(client_temp);
+            }
         } catch (SQLException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        return listeClients;
     }
+    
+    public static String inscrireClient(String nom, String prenom, String telephone, String id, String mot_de_passe) {
+        String function_return_message = "N/A";
+        Connection db = Database.getConnection();   
+        PreparedStatement statement = null;
+        boolean result;
+        String[] user_params = {nom, prenom, telephone, id};
+        String[] compte_params = {id.toUpperCase(), mot_de_passe, role}; 
+        try {
+            statement = db.prepareStatement("INSERT INTO compte(id, mot_de_passe) VALUES(?,?)");
+            statement.setString(1, id);
+            statement.setString(2, mot_de_passe);
+            result = statement.execute();
+            if(!result){
+                statement = db.prepareStatement("INSERT INTO user(nom, prenom, telephone, compte_id) VALUES(?,?,?,?)");
+                statement.setString(1, nom);
+                statement.setString(2, prenom);
+                statement.setString(3, telephone);
+                statement.setString(4, id);
+                result = statement.execute();
+            }
+        } catch (SQLIntegrityConstraintViolationException ex) {
+            function_return_message = "Numéro client déjà existant dans la base";
+        } catch (SQLException ex) {
+            function_return_message = ex.getMessage();
+        }
+        
+        return function_return_message;
+    }
+       
 }
