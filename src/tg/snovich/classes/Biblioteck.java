@@ -22,6 +22,7 @@ import java.util.logging.Logger;
 public class Biblioteck {
     
     public static Roles role = null;
+    public static int ConnectedUserId = 0;
     
     public static Roles authenticate(String mdp, String tel) {
         Connection db = Database.getConnection();   
@@ -29,10 +30,11 @@ public class Biblioteck {
         ResultSet rs = null;
         try {
             statement = db.createStatement();
-            rs = statement.executeQuery("SELECT * FROM compte INNER JOIN user ON user.compte_id = compte.id");
+            rs = statement.executeQuery("SELECT *, user.id as user_id FROM compte INNER JOIN user ON user.compte_id = compte.id");
             while(rs.next()) {
                 if(rs.getString("mot_de_passe").equals(mdp) && rs.getString("telephone").equals(tel)) {
                     role = rs.getString("roles") == "employe" ? Roles.EMPLOYE : Roles.CLIENT; 
+                    ConnectedUserId = Integer.parseInt(rs.getString("user_id"));
                     db.close();
                     break;
                 }
@@ -111,6 +113,68 @@ public class Biblioteck {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
         return listeClients;
+    }
+    
+    public static ArrayList listeClientsEmprunts() {
+        ArrayList<Client> listeClientsEmprunts = new ArrayList();
+        Connection db = Database.getConnection();   
+        Statement statement = null;
+        ResultSet rs = null;
+        try {
+            statement = db.createStatement();
+            rs = statement.executeQuery("SELECT nom, prenom, emprunt.id as code_emprunt FROM user INNER JOIN emprunt ON user.id=emprunt.user_id WHERE etat = \"emprunt\";");
+            while(rs.next()) {
+                Client client_temp = new Client();
+                client_temp.setNom(rs.getString("nom"));
+                client_temp.setPrenom(rs.getString("prenom"));
+                client_temp.setCode_emprunt(rs.getString("code_emprunt"));
+                listeClientsEmprunts.add(client_temp);
+                System.out.println(client_temp);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listeClientsEmprunts;
+    }
+    
+    public static ArrayList listeLivresEmpruntesParClient(int code_emprunt) {
+        ArrayList<Livre> contenuEmprunt = new ArrayList();
+        Connection db = Database.getConnection();   
+        Statement statement = null;
+        ResultSet rs = null;
+        try {
+            statement = db.createStatement();
+            rs = statement.executeQuery("SELECT isbn, titre FROM livre INNER JOIN contenu_emprunt ON livre.id=contenu_emprunt.livre_id WHERE emprunt_id = '"+ code_emprunt +"';");
+            while(rs.next()) {
+                Livre livre = new Livre();
+                livre.setIsbn(rs.getString("isbn"));
+                livre.setTitre(rs.getString("titre"));
+                contenuEmprunt.add(livre);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return contenuEmprunt;
+    }
+    
+    public static ArrayList listeLivresEmpruntesParClient2(int code_utilisateur) {
+        ArrayList<Livre> contenuEmprunt = new ArrayList();
+        Connection db = Database.getConnection();   
+        Statement statement = null;
+        ResultSet rs = null;
+        try {
+            statement = db.createStatement();
+            rs = statement.executeQuery("SELECT nom, prenom, isbn, titre FROM user INNER JOIN emprunt ON user.id=emprunt.user_id INNER JOIN contenu_emprunt ON emprunt.id=contenu_emprunt.emprunt_id INNER JOIN livre ON contenu_emprunt.livre_id=livre.id WHERE emprunt.etat=\"emprunt\" AND user.id='"+code_utilisateur+"'");
+            while(rs.next()) {
+                Livre livre = new Livre();
+                livre.setIsbn(rs.getString("isbn"));
+                livre.setTitre(rs.getString("titre"));
+                contenuEmprunt.add(livre);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return contenuEmprunt;
     }
     
     public static String inscrireClient(String nom, String prenom, String telephone, String id, String mot_de_passe) {

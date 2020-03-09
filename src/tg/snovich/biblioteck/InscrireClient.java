@@ -9,7 +9,10 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import javafx.scene.control.PasswordField;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import static org.eclipse.persistence.jpa.jpql.utility.CollectionTools.array;
 import tg.snovich.classes.Biblioteck;
@@ -38,6 +41,9 @@ public class InscrireClient extends javax.swing.JFrame {
             }
         }
         return !one_field_is_empty;
+    }
+    
+    private void rowSelected(java.awt.event.MouseEvent evt) {
     }
 
     /**
@@ -190,6 +196,11 @@ public class InscrireClient extends javax.swing.JFrame {
             }
         ));
         tableau_clients.setGridColor(new java.awt.Color(102, 102, 102));
+        tableau_clients.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableau_clientsMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tableau_clients);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -263,6 +274,15 @@ public class InscrireClient extends javax.swing.JFrame {
             model.addRow(new Object[]{String.join("-", "CLT", client.getId_client()), client.getPrenom(), client.getNom(), client.getTelephone()});
         }
     }//GEN-LAST:event_formWindowOpened
+
+    private void tableau_clientsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableau_clientsMouseClicked
+            JTable source = (JTable)evt.getSource();
+            int row = source.rowAtPoint( evt.getPoint() );
+            int column = source.columnAtPoint( evt.getPoint() );
+            String s=source.getModel().getValueAt(row, column)+"";
+
+            JOptionPane.showMessageDialog(null, s);
+    }//GEN-LAST:event_tableau_clientsMouseClicked
 
     /**
      * @param args the command line arguments

@@ -121,7 +121,7 @@ public class Client extends javax.swing.JFrame {
     }//GEN-LAST:event_blisteActionPerformed
 
     private void betatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_betatActionPerformed
-        new Etat_Emprunt().setVisible(true);
+        new EtatEmpruntsClient().setVisible(true);
         this.hide();
     }//GEN-LAST:event_betatActionPerformed
 

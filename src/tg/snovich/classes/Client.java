@@ -14,6 +14,17 @@ public class Client {
     private String prenom;
     private String telephone;
     private String id_client;
+    private String code_emprunt;
+
+    public String getCode_emprunt() {
+        return code_emprunt;
+    }
+
+    public void setCode_emprunt(String code_emprunt) {
+        this.code_emprunt = code_emprunt;
+    }
+    
+    
 
     public String getNom() {
         return nom;
