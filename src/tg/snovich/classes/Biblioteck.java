@@ -24,6 +24,18 @@ public class Biblioteck {
     public static Roles role = null;
     public static int ConnectedUserId = 0;
     
+        
+    public static boolean formIsValid(String[] formFields) {
+        boolean one_field_is_empty = false;
+        for(String field : formFields){
+            if (field.equals(""))
+            {
+                one_field_is_empty = true;
+            }
+        }
+        return !one_field_is_empty;
+    }
+    
     public static Roles authenticate(String mdp, String tel) {
         Connection db = Database.getConnection();   
         Statement statement = null;
@@ -199,6 +211,28 @@ public class Biblioteck {
             }
         } catch (SQLIntegrityConstraintViolationException ex) {
             function_return_message = "Numéro client déjà existant dans la base";
+        } catch (SQLException ex) {
+            function_return_message = ex.getMessage();
+        }
+        
+        return function_return_message;
+    }
+    
+    public static String ajouterLivre(String isbn, String titre) {
+        String function_return_message = "N/A";
+        Connection db = Database.getConnection();   
+        PreparedStatement statement = null;
+        boolean result;
+        try {
+            statement = db.prepareStatement("INSERT INTO livre(isbn, titre) VALUES(?, ?);");
+            statement.setString(1, isbn);
+            statement.setString(2, titre);
+            result = statement.execute();
+            if(!result){ // Si la requete réussit
+                function_return_message = "Livre enregistré !!!";
+            }
+        } catch (SQLIntegrityConstraintViolationException ex) {
+            function_return_message = "Numéro LIVRE déjà existant dans la base";
         } catch (SQLException ex) {
             function_return_message = ex.getMessage();
         }

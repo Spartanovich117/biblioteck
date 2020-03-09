@@ -43,7 +43,7 @@ public class Employe extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Enregistrer livre");
+        jButton1.setText("Gestion Livres");
         jButton1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tg/snovich/images/Livres2.jpg"))); // NOI18N
