@@ -43,54 +43,43 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="lbibliotech" max="32767" attributes="0"/>
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="bliste" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="395" max="32767" attributes="0"/>
+                  <EmptySpace pref="40" max="32767" attributes="0"/>
+                  <Component id="jLabel2" min="-2" pref="343" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="betat" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="dashboard_btn" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="301" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace type="separate" pref="186" max="32767" attributes="0"/>
+                  <Component id="bliste" min="-2" pref="46" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="154" max="-2" attributes="0"/>
+              </Group>
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="lbibliotech" min="-2" pref="47" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace type="separate" pref="139" max="32767" attributes="0"/>
-                          <Component id="bliste" min="-2" pref="46" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="154" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="136" max="-2" attributes="0"/>
-                          <Component id="betat" min="-2" pref="46" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                      </Group>
+                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                  <Component id="dashboard_btn" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="betat" alignment="3" min="-2" pref="46" max="-2" attributes="0"/>
+                      <Component id="jLabel2" alignment="3" min="-2" pref="286" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="lbibliotech">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="f4" green="79" red="12" type="rgb"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="24" style="3"/>
-            </Property>
-            <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="BIBLIOTECK"/>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
-                <BevelBorder/>
-              </Border>
-            </Property>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JButton" name="bliste">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -121,6 +110,22 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="betatActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel2">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/tg/snovich/images/Livres2.jpg"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="jLabel2"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="dashboard_btn">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Dashboard"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dashboard_btnActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

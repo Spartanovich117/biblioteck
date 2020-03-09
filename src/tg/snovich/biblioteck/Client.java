@@ -5,6 +5,8 @@
  */
 package tg.snovich.biblioteck;
 
+import tg.snovich.classes.Biblioteck;
+
 /**
  *
  * @author fidi
@@ -29,19 +31,14 @@ public class Client extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        lbibliotech = new javax.swing.JLabel();
         bliste = new javax.swing.JButton();
         betat = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        dashboard_btn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        lbibliotech.setBackground(new java.awt.Color(18, 121, 244));
-        lbibliotech.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
-        lbibliotech.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbibliotech.setText("BIBLIOTECK");
-        lbibliotech.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         bliste.setBackground(new java.awt.Color(255, 255, 255));
         bliste.setText("Liste des livres");
@@ -61,31 +58,47 @@ public class Client extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tg/snovich/images/Livres2.jpg"))); // NOI18N
+        jLabel2.setText("jLabel2");
+
+        dashboard_btn.setText("Dashboard");
+        dashboard_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dashboard_btnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbibliotech, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(bliste)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 395, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(betat)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(dashboard_btn)
+                .addGap(301, 301, 301))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(lbibliotech, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 139, Short.MAX_VALUE)
-                        .addComponent(bliste, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(154, 154, 154))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(136, 136, 136)
-                        .addComponent(betat, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(18, 186, Short.MAX_VALUE)
+                .addComponent(bliste, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(154, 154, 154))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(dashboard_btn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(betat, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -111,6 +124,19 @@ public class Client extends javax.swing.JFrame {
         new Etat_Emprunt().setVisible(true);
         this.hide();
     }//GEN-LAST:event_betatActionPerformed
+
+    private void dashboard_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dashboard_btnActionPerformed
+      switch(Biblioteck.role)
+        {
+            case EMPLOYE:
+                new Employe().setVisible(true);
+                this.hide();
+                break;
+            case CLIENT:
+                new Client().setVisible(true);
+                this.hide();
+        }
+    }//GEN-LAST:event_dashboard_btnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -151,7 +177,8 @@ public class Client extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton betat;
     private javax.swing.JButton bliste;
+    private javax.swing.JButton dashboard_btn;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lbibliotech;
     // End of variables declaration//GEN-END:variables
 }

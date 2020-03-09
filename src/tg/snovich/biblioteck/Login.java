@@ -140,20 +140,22 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_rbmdpoActionPerformed
 
     private void bvaliderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bvaliderActionPerformed
-        String role = Biblioteck.authenticate(mdp.getText(), telephone.getText());
+        Roles role = Biblioteck.authenticate(mdp.getText(), telephone.getText());
         switch(role){
-            case "client":
+            case CLIENT:
                 new Client().setVisible(true);
                 this.hide();
+                Biblioteck.role = Roles.CLIENT;
             break;
-            case "employe":
+            case EMPLOYE:
                 new Employe().setVisible(true);
                 this.hide();
+                Biblioteck.role = Roles.EMPLOYE;
             break;
-            case "EMPTY":
+            case EMPTY:
                 JOptionPane.showMessageDialog(rootPane, "Base de données vide", "Erreur authentification", JOptionPane.INFORMATION_MESSAGE, null);
             break;
-            case "KO":
+            case KO:
                 JOptionPane.showMessageDialog(rootPane, "Identifiants incorrects", "Erreur authentification", JOptionPane.ERROR_MESSAGE, null);
             break;
         }

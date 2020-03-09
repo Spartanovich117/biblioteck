@@ -21,9 +21,9 @@ import java.util.logging.Logger;
  */
 public class Biblioteck {
     
-    public static String role = null;
+    public static Roles role = null;
     
-    public static String authenticate(String mdp, String tel) {
+    public static Roles authenticate(String mdp, String tel) {
         Connection db = Database.getConnection();   
         Statement statement = null;
         ResultSet rs = null;
@@ -32,12 +32,12 @@ public class Biblioteck {
             rs = statement.executeQuery("SELECT * FROM compte INNER JOIN user ON user.compte_id = compte.id");
             while(rs.next()) {
                 if(rs.getString("mot_de_passe").equals(mdp) && rs.getString("telephone").equals(tel)) {
-                    role = rs.getString("roles");
+                    role = rs.getString("roles") == "employe" ? Roles.EMPLOYE : Roles.CLIENT; 
                     db.close();
                     break;
                 }
                 else {
-                    role = "KO";
+                    role = null;
                 }
             }
         } catch (SQLException ex) {
@@ -119,7 +119,7 @@ public class Biblioteck {
         PreparedStatement statement = null;
         boolean result;
         String[] user_params = {nom, prenom, telephone, id};
-        String[] compte_params = {id.toUpperCase(), mot_de_passe, role}; 
+        String[] compte_params = {id.toUpperCase(), mot_de_passe}; 
         try {
             statement = db.prepareStatement("INSERT INTO compte(id, mot_de_passe) VALUES(?,?)");
             statement.setString(1, id);
