@@ -149,7 +149,7 @@ public class Gestion_Livre extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "#Réf Livre", "ISBN", "Titre", "Date d'ajout", "Etat"
+                "# Réf Livre", "ISBN", "Titre", "Date d'ajout", "Disponibilité"
             }
         ));
         tableau_livres.setGridColor(new java.awt.Color(102, 102, 102));

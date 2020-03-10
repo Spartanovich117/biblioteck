@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tg.biblioteck.vues.client;
+package tg.biblioteck.vues.employe;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -39,15 +40,15 @@ public class Gestion_Client extends javax.swing.JInternalFrame {
         lliste = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         nom_label = new javax.swing.JLabel();
-        lnom = new javax.swing.JTextField();
+        nom_tf = new javax.swing.JTextField();
         prenom_label = new javax.swing.JLabel();
-        lprenom = new javax.swing.JTextField();
+        prenom_tf = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        ltelephone = new javax.swing.JTextField();
+        telephone_tf = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         numero_client_label = new javax.swing.JLabel();
-        lnumero_client = new javax.swing.JTextField();
-        lmot_de_passe = new javax.swing.JPasswordField();
+        num_compte_tf = new javax.swing.JTextField();
+        mdp_tf = new javax.swing.JPasswordField();
         bajout = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         lerror_messages = new javax.swing.JLabel();
@@ -55,6 +56,23 @@ public class Gestion_Client extends javax.swing.JInternalFrame {
         tableau_clients = new javax.swing.JTable();
 
         setMinimumSize(new java.awt.Dimension(947, 469));
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -113,13 +131,13 @@ public class Gestion_Client extends javax.swing.JInternalFrame {
                         .addGap(46, 46, 46)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(ltelephone, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                                .addComponent(telephone_tf, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
                                 .addGap(1, 1, 1))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(lprenom, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
-                                .addComponent(lnom, javax.swing.GroupLayout.Alignment.TRAILING))
-                            .addComponent(lnumero_client)
-                            .addComponent(lmot_de_passe)))
+                                .addComponent(prenom_tf, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                                .addComponent(nom_tf, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(num_compte_tf)
+                            .addComponent(mdp_tf)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(bajout, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -132,26 +150,26 @@ public class Gestion_Client extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lnom)
+                    .addComponent(nom_tf)
                     .addComponent(nom_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lprenom)
+                    .addComponent(prenom_tf)
                     .addComponent(prenom_label, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(numero_client_label)
-                    .addComponent(lnumero_client, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(num_compte_tf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(ltelephone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(telephone_tf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(lmot_de_passe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(mdp_tf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lerror_messages, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -165,7 +183,7 @@ public class Gestion_Client extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "#Réf Client", "Nom", "Prénom", "Téléphone"
+                "# N° Compte", "Nom", "Prénom", "Téléphone"
             }
         ));
         tableau_clients.setGridColor(new java.awt.Color(102, 102, 102));
@@ -222,17 +240,18 @@ public class Gestion_Client extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bajoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bajoutActionPerformed
-        String[] liste_valeurs_formulaire = {lnom.getText(), lprenom.getText(), this.lmot_de_passe.getText(), this.lnumero_client.getText(), this.ltelephone.getText()};
+        String[] liste_valeurs_formulaire = {nom_tf.getText(), prenom_tf.getText(), this.mdp_tf.getText(), this.num_compte_tf.getText(), this.telephone_tf.getText()};
         if(formIsValid(liste_valeurs_formulaire))
         {
             lerror_messages.setText("");
-            String return_message = Biblioteck.inscrireClient(lprenom.getText(), lnom.getText(), ltelephone.getText(), lnumero_client.getText(), lmot_de_passe.getText());
+            String return_message = Biblioteck.inscrireClient(nom_tf.getText(), prenom_tf.getText(),  telephone_tf.getText(), num_compte_tf.getText(), mdp_tf.getText());
             if(return_message != "N/A")
             JOptionPane.showMessageDialog(rootPane, return_message, "Erreur", JOptionPane.ERROR_MESSAGE, null);
             else{
                 //JOptionPane.showMessageDialog(rootPane, "Client enregistré !!!");
                 DefaultTableModel model = (DefaultTableModel) tableau_clients.getModel();
-                model.addRow(new Object[]{lnumero_client.getText().toUpperCase(), lnom.getText(), lprenom.getText(), ltelephone.getText()});
+                String num_compte_complet = "CPT-"+num_compte_tf.getText().toUpperCase();
+                model.addRow(new Object[]{num_compte_complet, nom_tf.getText(), prenom_tf.getText(), telephone_tf.getText()});
             }
         } else {
             this.lerror_messages.setText("Veuillez remplir tous les champs svp");
@@ -248,6 +267,14 @@ public class Gestion_Client extends javax.swing.JInternalFrame {
         JOptionPane.showMessageDialog(null, s);
     }//GEN-LAST:event_tableau_clientsMouseClicked
 
+    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
+        ArrayList<tg.biblioteck.modeles.Client> liste_clients = Biblioteck.listeClients();
+        for(tg.biblioteck.modeles.Client client: liste_clients) {
+            DefaultTableModel model = (DefaultTableModel) this.tableau_clients.getModel();
+            model.addRow(new Object[]{client.getNumero_compte(), client.getNom(), client.getPrenom(), client.getTelephone()});
+        }
+    }//GEN-LAST:event_formInternalFrameOpened
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bajout;
@@ -261,14 +288,14 @@ public class Gestion_Client extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lbibliotech;
     private javax.swing.JLabel lerror_messages;
     private javax.swing.JLabel lliste;
-    private javax.swing.JPasswordField lmot_de_passe;
-    private javax.swing.JTextField lnom;
-    private javax.swing.JTextField lnumero_client;
-    private javax.swing.JTextField lprenom;
-    private javax.swing.JTextField ltelephone;
+    private javax.swing.JPasswordField mdp_tf;
     private javax.swing.JLabel nom_label;
+    private javax.swing.JTextField nom_tf;
+    private javax.swing.JTextField num_compte_tf;
     private javax.swing.JLabel numero_client_label;
     private javax.swing.JLabel prenom_label;
+    private javax.swing.JTextField prenom_tf;
     private javax.swing.JTable tableau_clients;
+    private javax.swing.JTextField telephone_tf;
     // End of variables declaration//GEN-END:variables
 }

@@ -119,13 +119,14 @@ public class Biblioteck {
         ResultSet rs = null;
         try {
             statement = db.createStatement();
-            rs = statement.executeQuery("SELECT * FROM user");
+            rs = statement.executeQuery("SELECT * FROM user NATURAL JOIN compte");
             while(rs.next()) {
                 Client client_temp = new Client();
                 client_temp.setNom(rs.getString("nom"));
                 client_temp.setPrenom(rs.getString("prenom"));
                 client_temp.setTelephone(rs.getString("telephone"));
                 client_temp.setId_client(rs.getString("id"));
+                client_temp.setNumero_compte(rs.getString("numero_compte"));
                 listeClients.add(client_temp);
                 System.out.println(client_temp);
             }
@@ -197,28 +198,27 @@ public class Biblioteck {
         return contenuEmprunt;
     }
     
-    public static String inscrireClient(String nom, String prenom, String telephone, String id, String mot_de_passe) {
+    public static String inscrireClient(String nom, String prenom, String telephone, String numero_compte, String mot_de_passe) {
         String function_return_message = "N/A";
         Connection db = Database.getConnection();   
         PreparedStatement statement = null;
         boolean result;
-        String[] user_params = {nom, prenom, telephone, id};
-        String[] compte_params = {id.toUpperCase(), mot_de_passe}; 
+        String num_compte = "CPT-" + numero_compte;
         try {
-            statement = db.prepareStatement("INSERT INTO compte(id, mot_de_passe) VALUES(?,?)");
-            statement.setString(1, id);
+            statement = db.prepareStatement("INSERT INTO compte(numero_compte, mot_de_passe) VALUES(?,?)");
+            statement.setString(1, num_compte);
             statement.setString(2, mot_de_passe);
             result = statement.execute();
             if(!result){
-                statement = db.prepareStatement("INSERT INTO user(nom, prenom, telephone, compte_id) VALUES(?,?,?,?)");
+                statement = db.prepareStatement("INSERT INTO user(nom, prenom, telephone, numero_compte) VALUES(?,?,?,?)");
                 statement.setString(1, nom);
                 statement.setString(2, prenom);
                 statement.setString(3, telephone);
-                statement.setString(4, id);
-                result = statement.execute();
+                statement.setString(4, num_compte);
+                statement.execute();
             }
         } catch (SQLIntegrityConstraintViolationException ex) {
-            function_return_message = "Numéro client déjà existant dans la base";
+            function_return_message = "Numéro de compte déjà existant dans la base";
         } catch (SQLException ex) {
             function_return_message = ex.getMessage();
         }

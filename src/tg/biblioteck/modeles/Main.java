@@ -22,7 +22,7 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws SQLException {
-        Biblioteck.ajouterLivre("0000000", "Spartan_117");
+        Biblioteck.inscrireClient("NOVICH", "Spartan_117", "99885825", "CLT-003", "admin");
     }
     
 }

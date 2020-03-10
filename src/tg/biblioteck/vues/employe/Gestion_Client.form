@@ -9,6 +9,9 @@
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
   </SyntheticProperties>
+  <Events>
+    <EventHandler event="internalFrameOpened" listener="javax.swing.event.InternalFrameListener" parameters="javax.swing.event.InternalFrameEvent" handler="formInternalFrameOpened"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -146,15 +149,15 @@
                               <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="ltelephone" pref="183" max="32767" attributes="0"/>
+                                      <Component id="telephone_tf" pref="183" max="32767" attributes="0"/>
                                       <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="lprenom" alignment="1" pref="184" max="32767" attributes="0"/>
-                                      <Component id="lnom" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="prenom_tf" alignment="1" pref="184" max="32767" attributes="0"/>
+                                      <Component id="nom_tf" alignment="1" max="32767" attributes="0"/>
                                   </Group>
-                                  <Component id="lnumero_client" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="lmot_de_passe" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="num_compte_tf" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="mdp_tf" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -173,12 +176,12 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="lnom" alignment="0" max="32767" attributes="0"/>
+                          <Component id="nom_tf" alignment="0" max="32767" attributes="0"/>
                           <Component id="nom_label" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="lprenom" alignment="0" max="32767" attributes="0"/>
+                          <Component id="prenom_tf" alignment="0" max="32767" attributes="0"/>
                           <Component id="prenom_label" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
@@ -186,17 +189,17 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="numero_client_label" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lnumero_client" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="num_compte_tf" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="ltelephone" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="telephone_tf" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lmot_de_passe" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="mdp_tf" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -214,21 +217,21 @@
                 <Property name="text" type="java.lang.String" value="Nom:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="lnom">
+            <Component class="javax.swing.JTextField" name="nom_tf">
             </Component>
             <Component class="javax.swing.JLabel" name="prenom_label">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Prenom"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="lprenom">
+            <Component class="javax.swing.JTextField" name="prenom_tf">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel1">
               <Properties>
                 <Property name="text" type="java.lang.String" value="T&#xe9;l&#xe9;phone"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="ltelephone">
+            <Component class="javax.swing.JTextField" name="telephone_tf">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel2">
               <Properties>
@@ -240,9 +243,9 @@
                 <Property name="text" type="java.lang.String" value="N&#xb0; Compte"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="lnumero_client">
+            <Component class="javax.swing.JTextField" name="num_compte_tf">
             </Component>
-            <Component class="javax.swing.JPasswordField" name="lmot_de_passe">
+            <Component class="javax.swing.JPasswordField" name="mdp_tf">
             </Component>
             <Component class="javax.swing.JButton" name="bajout">
               <Properties>
@@ -284,14 +287,41 @@
                 </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="4" rowCount="0">
-                    <Column editable="true" title="#R&#xe9;f Client" type="java.lang.Object"/>
+                    <Column editable="true" title="# N&#xb0; Compte" type="java.lang.Object"/>
                     <Column editable="true" title="Nom" type="java.lang.Object"/>
                     <Column editable="true" title="Pr&#xe9;nom" type="java.lang.Object"/>
                     <Column editable="true" title="T&#xe9;l&#xe9;phone" type="java.lang.Object"/>
                   </Table>
                 </Property>
+                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                  <TableColumnModel selectionModel="0">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                  </TableColumnModel>
+                </Property>
                 <Property name="gridColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="66" green="66" red="66" type="rgb"/>
+                </Property>
+                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                  <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
               </Properties>
               <Events>

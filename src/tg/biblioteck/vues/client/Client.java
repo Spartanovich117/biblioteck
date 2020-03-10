@@ -6,6 +6,7 @@
 package tg.biblioteck.vues.client;
 
 import tg.biblioteck.modeles.Biblioteck;
+import tg.biblioteck.vues.Login;
 
 /**
  *
@@ -19,6 +20,7 @@ public class Client extends javax.swing.JFrame {
     public Client() {
         initComponents();
         setTitle("Client");
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -153,6 +155,7 @@ public class Client extends javax.swing.JFrame {
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         Biblioteck.logout();
         this.dispose();
+        new Login().setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**

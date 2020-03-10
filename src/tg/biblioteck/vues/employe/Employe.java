@@ -7,7 +7,7 @@ package tg.biblioteck.vues.employe;
 
 import tg.biblioteck.modeles.Biblioteck;
 import tg.biblioteck.modeles.Roles;
-import tg.biblioteck.vues.client.Gestion_Client;
+import tg.biblioteck.vues.Login;
 
 /**
  *
@@ -21,6 +21,7 @@ public class Employe extends javax.swing.JFrame {
     public Employe() {
         initComponents();
         setTitle("Employé");
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -45,8 +46,10 @@ public class Employe extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1024, 760));
 
         desktop_pane.setMinimumSize(new java.awt.Dimension(746, 334));
         desktop_pane.setLayout(new java.awt.BorderLayout());
@@ -125,6 +128,14 @@ public class Employe extends javax.swing.JFrame {
 
         jMenu1.add(jMenu4);
 
+        jMenuItem7.setText("Déconnexion");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem7);
+
         jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
@@ -174,6 +185,12 @@ public class Employe extends javax.swing.JFrame {
         this.desktop_pane.add(gc);
         gc.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        Biblioteck.logout();
+        this.dispose();
+        new Login().setVisible(true);
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
 
 
 
@@ -228,6 +245,7 @@ public class Employe extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }

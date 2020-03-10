@@ -15,6 +15,17 @@ public class Client {
     private String telephone;
     private String id_client;
     private String code_emprunt;
+    private String numero_compte;
+
+    public String getNumero_compte() {
+        return numero_compte;
+    }
+
+    public void setNumero_compte(String numero_compte) {
+        this.numero_compte = numero_compte;
+    }
+    
+    
 
     public String getCode_emprunt() {
         return code_emprunt;

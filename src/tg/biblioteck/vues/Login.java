@@ -24,6 +24,7 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         setTitle("Authentification");
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -36,7 +37,6 @@ public class Login extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        lconnecter = new javax.swing.JLabel();
         ltelephone = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         telephone = new javax.swing.JTextField();
@@ -47,12 +47,6 @@ public class Login extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-
-        lconnecter.setBackground(new java.awt.Color(18, 121, 244));
-        lconnecter.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
-        lconnecter.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lconnecter.setText("SE CONNECTER");
-        lconnecter.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         ltelephone.setText("Telephone");
 
@@ -77,7 +71,6 @@ public class Login extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lconnecter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -97,8 +90,7 @@ public class Login extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(lconnecter, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(64, 64, 64)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(telephone, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
                     .addComponent(ltelephone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -191,7 +183,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton bvalider;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lconnecter;
     private javax.swing.JLabel ltelephone;
     private javax.swing.JPasswordField mdp;
     private javax.swing.JTextField telephone;
