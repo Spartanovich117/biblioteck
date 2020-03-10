@@ -43,7 +43,7 @@ public class Biblioteck {
         ResultSet rs = null;
         try {
             statement = db.createStatement();
-            rs = statement.executeQuery("SELECT *, user.id as user_id FROM compte INNER JOIN user ON user.compte_id = compte.id");
+            rs = statement.executeQuery("SELECT *, user.id as user_id FROM compte NATURAL JOIN user");
             while(rs.next()) {
                 if(rs.getString("mot_de_passe").equals(mdp) && rs.getString("telephone").equals(tel)) {
                     String test = rs.getString("roles");
@@ -76,6 +76,29 @@ public class Biblioteck {
         try {
             statement = db.createStatement();
             rs = statement.executeQuery("SELECT * FROM livre");
+            while(rs.next()) {
+                Livre livre_temp = new Livre();
+                livre_temp.setId(rs.getInt("id"));
+                livre_temp.setTitre(rs.getString("titre"));
+                livre_temp.setDate_ajout(rs.getDate("date_ajout"));
+                livre_temp.setEtat(rs.getString("etat"));
+                livre_temp.setIsbn(rs.getString("isbn"));
+                listeLivres.add(livre_temp);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listeLivres;
+    }
+    
+    public static ArrayList listeLivresDisponibles() {
+        ArrayList<Livre> listeLivres = new ArrayList();
+        Connection db = Database.getConnection();   
+        Statement statement = null;
+        ResultSet rs = null;
+        try {
+            statement = db.createStatement();
+            rs = statement.executeQuery("SELECT * FROM livre WHERE etat = 'libre'");
             while(rs.next()) {
                 Livre livre_temp = new Livre();
                 livre_temp.setId(rs.getInt("id"));
@@ -216,6 +239,45 @@ public class Biblioteck {
                 statement.setString(3, telephone);
                 statement.setString(4, num_compte);
                 statement.execute();
+            }
+        } catch (SQLIntegrityConstraintViolationException ex) {
+            function_return_message = "Numéro de compte déjà existant dans la base";
+        } catch (SQLException ex) {
+            function_return_message = ex.getMessage();
+        }
+        
+        return function_return_message;
+    }
+    
+    public static String enregistrerReservation(String client_connecte, int[] numeros_livres) {
+        String function_return_message = "N/A";
+        Connection db = Database.getConnection();   
+        PreparedStatement statement = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        int actual_emprunt_id = 0;
+        boolean result;
+        try {
+            statement = db.prepareStatement("INSERT INTO emprunt(etat, user_id) VALUES(?,?)");
+            statement.setString(1, "reservation");
+            statement.setString(2, client_connecte);
+            result = statement.execute();
+            if(!result){
+                // On récupère l'identifiant
+                stmt = db.createStatement();
+                rs = stmt.executeQuery("SELECT LAST_INSERT_ID()");
+                if(rs.first())
+                {
+                    actual_emprunt_id = rs.getInt(1);
+                    for(int i=0; i<numeros_livres.length; i++)
+                    {
+                        statement = db.prepareStatement("INSERT INTO contenu_emprunt(emprunt_id, livre_id) VALUES(?,?)");
+                        statement.setString(1, String.valueOf(actual_emprunt_id));
+                        statement.setString(2, String.valueOf(numeros_livres[i]));
+                        statement.execute();
+                        return function_return_message = "Réservation enregistrée";
+                    }
+                }
             }
         } catch (SQLIntegrityConstraintViolationException ex) {
             function_return_message = "Numéro de compte déjà existant dans la base";

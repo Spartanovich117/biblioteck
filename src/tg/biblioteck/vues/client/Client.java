@@ -37,13 +37,14 @@ public class Client extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         listeLivres_menu = new javax.swing.JMenuItem();
-        etatEmprunts_menu = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        mes_emprunts_menu = new javax.swing.JMenuItem();
+        reserver_livres_menu = new javax.swing.JMenuItem();
+        deconnexion_menu = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         setName("main_frame"); // NOI18N
+        setPreferredSize(new java.awt.Dimension(1024, 760));
         setSize(new java.awt.Dimension(746, 334));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -91,24 +92,29 @@ public class Client extends javax.swing.JFrame {
         });
         jMenu1.add(listeLivres_menu);
 
-        etatEmprunts_menu.setText("Mes Emprunts");
-        etatEmprunts_menu.addActionListener(new java.awt.event.ActionListener() {
+        mes_emprunts_menu.setText("Mes Emprunts");
+        mes_emprunts_menu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                etatEmprunts_menuActionPerformed(evt);
+                mes_emprunts_menuActionPerformed(evt);
             }
         });
-        jMenu1.add(etatEmprunts_menu);
+        jMenu1.add(mes_emprunts_menu);
 
-        jMenuItem1.setText("Réserver Livres");
-        jMenu1.add(jMenuItem1);
-
-        jMenuItem2.setText("Déconnexion");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        reserver_livres_menu.setText("Réserver Livres");
+        reserver_livres_menu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                reserver_livres_menuActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        jMenu1.add(reserver_livres_menu);
+
+        deconnexion_menu.setText("Déconnexion");
+        deconnexion_menu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deconnexion_menuActionPerformed(evt);
+            }
+        });
+        jMenu1.add(deconnexion_menu);
 
         jMenuBar1.add(jMenu1);
 
@@ -128,11 +134,11 @@ public class Client extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void etatEmprunts_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_etatEmprunts_menuActionPerformed
+    private void mes_emprunts_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mes_emprunts_menuActionPerformed
         Mes_Emprunts me = new Mes_Emprunts();
         this.desktop_pane.add(me);
         me.setVisible(true);
-    }//GEN-LAST:event_etatEmprunts_menuActionPerformed
+    }//GEN-LAST:event_mes_emprunts_menuActionPerformed
 
     private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
 
@@ -152,11 +158,17 @@ public class Client extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_formWindowOpened
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void deconnexion_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deconnexion_menuActionPerformed
         Biblioteck.logout();
         this.dispose();
         new Login().setVisible(true);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_deconnexion_menuActionPerformed
+
+    private void reserver_livres_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserver_livres_menuActionPerformed
+        Reservation r = new Reservation();
+        this.desktop_pane.add(r);
+        r.setVisible(true);
+    }//GEN-LAST:event_reserver_livres_menuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -195,13 +207,13 @@ public class Client extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem deconnexion_menu;
     private javax.swing.JDesktopPane desktop_pane;
-    private javax.swing.JMenuItem etatEmprunts_menu;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuItem listeLivres_menu;
+    private javax.swing.JMenuItem mes_emprunts_menu;
+    private javax.swing.JMenuItem reserver_livres_menu;
     // End of variables declaration//GEN-END:variables
 }
